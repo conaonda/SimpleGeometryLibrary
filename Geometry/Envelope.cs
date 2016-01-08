@@ -30,21 +30,15 @@ namespace SimpleGeometryLibrary.Geometry
     /// <typeparam name="T">값의 유형</typeparam>
     internal class Envelope<T> : Rectangle<T>, IEnvelope<T>
     {
-        /// <summary>기본 생성자</summary>
-        public Envelope()
-            : base(Number<T>.MaxValue, Number<T>.MaxValue, Number<T>.MinValue, Number<T>.MinValue)
-        {
-        }
-
         /// <summary>다른 영역 객체를 포함하도록 영역을 확장</summary>
         /// <param name="other">다른 영역 객체</param>
         public void Expand(IRectangle<T> other)
         {
-            this.StartX = ((Number<T>)this.StartX).Min(other.StartX);
-            this.StartY = ((Number<T>)this.StartY).Min(other.StartY);
+            this.Min.X = ((Number<T>)this.Min.X).Min(other.Min.X);
+            this.Min.Y = ((Number<T>)this.Min.Y).Min(other.Min.Y);
 
-            this.EndX = ((Number<T>)this.EndX).Max(other.EndX);
-            this.EndY = ((Number<T>)this.EndY).Max(other.EndY);
+            this.Max.X = ((Number<T>)this.Max.X).Max(other.Max.X);
+            this.Max.Y = ((Number<T>)this.Max.Y).Max(other.Max.Y);
         }
     }
 }

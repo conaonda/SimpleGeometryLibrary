@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="VectorBase.cs" company="Conaonda">
+//  <copyright file="IVector.cs" company="Conaonda">
 //     The MIT License (MIT)
 //     Copyright (c) 2016 Conaonda
 //     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,31 +19,9 @@
 //     SOFTWARE.
 //  </copyright>
 //  <summary>
-//    VectorBase.cs 클래스를 정의합니다.
+//    IVector.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
 namespace SimpleGeometryLibrary.Geometry
 {
-    /// <summary>벡터 기본 기능 클래스</summary>
-    /// <typeparam name="T">값 유형</typeparam>
-    public abstract class VectorBase<T>
-    {
-        /// <summary>값 목록</summary>
-        protected T[] Factor;
-
-        /// <summary>상속 전용 생성자</summary>
-        /// <param name="dimension">차원 수</param>
-        protected VectorBase(byte dimension)
-        {
-            this.Factor = new T[dimension];
-        }
-
-        /// <summary>길이를 가져옴</summary>
-        public abstract double Length { get; }
-
-        /// <summary>i번째 값을 가져옴</summary>
-        /// <param name="i">값 인덱스</param>
-        /// <returns>i번째 값</returns>
-        protected T this[byte i] => this.Factor[i];
-    }
 }

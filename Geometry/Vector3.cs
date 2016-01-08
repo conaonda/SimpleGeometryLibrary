@@ -24,41 +24,42 @@
 //  --------------------------------------------------------------------------------------------------------------------
 namespace SimpleGeometryLibrary.Geometry
 {
-    using SimpleGeometryLibrary.Numeric;
+    using Numeric;
 
-    /// <summary>
-    /// 3차원 벡터 클래스
-    /// </summary>
+    /// <summary>3차원 벡터 클래스</summary>
     /// <typeparam name="T">값 유형</typeparam>
-    public class Vector3<T> : Vector2<T>
+    public class Vector3<T> : Point3<T>
     {
-        /// <summary>
-        /// 기본 생성자
-        /// </summary>
         public Vector3()
-            : base(3)
         {
+            this.FactorChanged += this.CalcSize;
         }
 
-        /// <summary>
-        /// X, Y, Z 값을 입력하여 객체를 생성
-        /// </summary>
+        /// <summary>X, Y, Z 값을 입력하여 객체를 생성</summary>
         /// <param name="x">X 값</param>
         /// <param name="y">Y 값</param>
         /// <param name="z">Z 값</param>
         public Vector3(T x, T y, T z)
-            : base(3, x, y)
+            : base(x, y, z)
         {
-            this.Factor[2] = z;
         }
 
-        /// <summary>
-        /// Z 값을 가져옴
-        /// </summary>
-        public T Z => this.Factor[2];
+        /// <summary>벡터의 크기를 가져옴</summary>
+        public double Size { get; private set; }
 
-        /// <summary>길이를 가져옴</summary>
-        public override double Length
-            => ((Number<T>)this[0] * this[0] + (Number<T>)this[1] * this[1] + (Number<T>)this[2] * this[2]).Sqrt();
+        public Vector3<double> Normalize()
+            => new Vector3<double>(
+                (Number<T>)this[0] / this.Size, 
+                (Number<T>)this[1] / this.Size, 
+                (Number<T>)this[2] / this.Size);
+
+        /// <summary>크기를 계산</summary>
+        private void CalcSize()
+        {
+            this.Size = (
+                ((Number<T>)this[0] * this[0]) +
+                ((Number<T>)this[1] * this[1]) +
+                ((Number<T>)this[2] * this[2])).Sqrt();
+        }
     }
 }

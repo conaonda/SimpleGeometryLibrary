@@ -24,28 +24,76 @@
 //  --------------------------------------------------------------------------------------------------------------------
 namespace SimpleGeometryLibrary.Geometry
 {
-    using Numeric;
+    using SimpleGeometryLibrary.Numeric;
 
+    /// <summary>직사각형 정보 관리 클래스</summary>
+    /// <typeparam name="T"></typeparam>
     internal class Rectangle<T> : IRectangle<T>
     {
-        public Rectangle(T startx, T starty, T endx, T endy)
+        /// <summary>최대 위치</summary>
+        private readonly Point2<T> max;
+
+        /// <summary>최소 위치</summary>
+        private readonly Point2<T> min;
+
+        /// <summary>기본 생성자</summary>
+        public Rectangle()
         {
-            this.StartX = startx;
-            this.StartY = starty;
-            this.EndX = endx;
-            this.EndY = endy;
+            this.min = new Point2<T>(Number<T>.MaxValue, Number<T>.MaxValue);
+            this.max = new Point2<T>(Number<T>.MinValue, Number<T>.MinValue);
         }
 
-        public T StartX { get; set; }
+        /// <summary>두 개의 위치로부터 객체를 생성</summary>
+        /// <param name="pt1">첫 번째 위치</param>
+        /// <param name="pt2">두 번째 위치</param>
+        public Rectangle(Point2<T> pt1, Point2<T> pt2)
+            : this(pt1.X, pt1.Y, pt2.X, pt2.Y)
+        {
+        }
 
-        public T StartY { get; set; }
+        /// <summary>두 개의 위치로부터 객체를 생성</summary>
+        /// <param name="x1">첫 번째 X 값</param>
+        /// <param name="y1">첫 번째 Y 값</param>
+        /// <param name="x2">두 번째 X 값</param>
+        /// <param name="y2">두 번째 Y 값</param>
+        public Rectangle(T x1, T y1, T x2, T y2)
+            :this()
+        {
+            this.FromPoints(x1, y1, x2, y2);
+        }
 
-        public T EndX { get; set; }
+        /// <summary>시작 위치</summary>
+        public Point2<T> Min
+        {
+            get { return this.min; }
+            set { this.FromPoints(value.X, value.Y, this.max.X, this.max.Y); }
+        }
 
-        public T EndY { get; set; }
+        /// <summary>끝 위치</summary>
+        public Point2<T> Max
+        {
+            get { return this.max; }
+            set { this.FromPoints(value.X, value.Y, this.min.X, this.min.Y); }
+        }
 
-        public T Width => (Number<T>)this.EndX - this.StartX;
+        /// <summary>가로 크기</summary>
+        public T Width => (Number<T>)this.max.X - this.min.X;
 
-        public T Height => (Number<T>)this.EndY - this.StartY;
+        /// <summary>세로 크기</summary>
+        public T Height => (Number<T>)this.max.Y - this.min.Y;
+
+        /// <summary>위치를 설정</summary>
+        /// <param name="x1">첫 번째 X 값</param>
+        /// <param name="y1">첫 번째 Y 값</param>
+        /// <param name="x2">두 번째 X 값</param>
+        /// <param name="y2">두 번째 Y 값</param>
+        private void FromPoints(T x1, T y1, T x2, T y2)
+        {
+            this.min.X = ((Number<T>)x1).Min(x2);
+            this.max.X = ((Number<T>)x1).Max(x2);
+
+            this.min.Y = ((Number<T>)y1).Min(y2);
+            this.max.Y = ((Number<T>)y1).Max(y2);
+        }
     }
 }

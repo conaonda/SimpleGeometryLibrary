@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Vector2.cs" company="Conaonda">
+//  <copyright file="Program.cs" company="Conaonda">
 //     The MIT License (MIT)
 //     Copyright (c) 2016 Conaonda
 //     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,39 +19,34 @@
 //     SOFTWARE.
 //  </copyright>
 //  <summary>
-//    Vector2.cs 클래스를 정의합니다.
+//    Program.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
-namespace SimpleGeometryLibrary.Geometry
+namespace Test
 {
-    using Numeric;
+    using System;
 
-    /// <summary>2차원 벡터 클래스</summary>
-    /// <typeparam name="T">값 유형</typeparam>
-    public class Vector2<T> : Point2<T>
+    using SimpleGeometryLibrary.Geometry;
+
+    /// <summary>테스트 클래스</summary>
+    public class Program
     {
-        public Vector2()
+        /// <summary>메인 함수</summary>
+        /// <param name="args">가변 인자</param>
+        public static void Main(string[] args)
         {
-            this.FactorChanged += this.CalcSize;
-        }
+            var env = GeometryFactory<int>.CreatEnvelope();
+            var rect1 = GeometryFactory<int>.CreateRectangle(1, -20, 40, -10);
+            var rect2 = GeometryFactory<int>.CreateRectangle(-20, -10, 10, 0);
 
-        public Vector2(T a, T b)
-            : base(a, b)
-        {
-        }
+            env.Expand(rect1);
+            env.Expand(rect2);
 
-        public double Size { get; private set; }
+            Console.WriteLine("min = {0}, {1}", env.Min.X, env.Min.Y);
+            Console.WriteLine("max = {0}, {1}", env.Max.X, env.Max.Y);
 
-        public Vector2<double> Normalize()
-            => new Vector2<double>(
-                (Number<T>)this[0] / this.Size,
-                (Number<T>)this[1] / this.Size);
-
-        private void CalcSize()
-        {
-            this.Size = (
-                (Number<T>)this[0] * this[0] +
-                (Number<T>)this[1] * this[1]).Sqrt();
+            Console.WriteLine("End of test.");
+            Console.Read();
         }
     }
 }

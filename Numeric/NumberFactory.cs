@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="NumericFactory.cs" company="Conaonda">
+//  <copyright file="NumberFactory.cs" company="Conaonda">
 //     The MIT License (MIT)
 //     Copyright (c) 2016 Conaonda
 //     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +19,7 @@
 //     SOFTWARE.
 //  </copyright>
 //  <summary>
-//    NumericFactory.cs 클래스를 정의합니다.
+//    NumberFactory.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
 namespace SimpleGeometryLibrary.Numeric
@@ -27,7 +27,7 @@ namespace SimpleGeometryLibrary.Numeric
     using System;
 
     /// <summary>숫자 객체 생성 팩터리</summary>
-    internal class NumericFactory
+    internal class NumberFactory
     {
         /// <summary>숫자 객체를 생성</summary>
         /// <typeparam name="T">숫자 유형</typeparam>

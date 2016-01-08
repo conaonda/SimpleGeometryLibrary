@@ -66,13 +66,15 @@ namespace SimpleGeometryLibrary.Numeric
             }
         }
 
+        public static implicit operator double(Number<T> self) => Convert.ToDouble(self.Value);
+
         /// <summary>암시적으로 제네릭 숫자 객체를 값으로 변환</summary>
         /// <param name="self">제네릭 숫자 객체</param>
         public static implicit operator T(Number<T> self) => self.Value;
 
         /// <summary>암시적으로 값을 제네릭 숫자 객체로 변환</summary>
         /// <param name="v"></param>
-        public static implicit operator Number<T>(T v) => NumericFactory.CreateNumeric<T>(v) as Number<T>;
+        public static implicit operator Number<T>(T v) => NumberFactory.CreateNumeric<T>(v) as Number<T>;
 
         /// <summary>두 값을 더함</summary>
         /// <param name="a">첫 번째 값</param>

@@ -28,17 +28,11 @@ namespace SimpleGeometryLibrary.Geometry
     /// <typeparam name="T">사각형의 위치, 크기에 대한 자료형</typeparam>
     public interface IRectangle<T>
     {
-        /// <summary>시작 X 위치</summary>
-        T StartX { get; set; }
+        /// <summary>시작 위치</summary>
+        Point2<T> Min { get; set; }
 
-        /// <summary>시작 Y 위치</summary>
-        T StartY { get; set; }
-
-        /// <summary>끝 X 위치</summary>
-        T EndX { get; set; }
-
-        /// <summary>끝 Y 위치</summary>
-        T EndY { get; set; }
+        /// <summary>끝 위치</summary>
+        Point2<T> Max { get; set; }
 
         /// <summary>가로 크기</summary>
         T Width { get; }
