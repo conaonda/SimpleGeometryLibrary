@@ -49,7 +49,6 @@
     <Compile Include="Geometry\Rectangle.cs" />
     <Compile Include="Geometry\Vector2.cs" />
     <Compile Include="Geometry\Vector3.cs" />
-    <Compile Include="Geometry\IVector.cs" />
     <Compile Include="Numeric\IntNumber.cs" />
     <Compile Include="Numeric\Number.cs" />
     <Compile Include="Numeric\NumberFactory.cs" />
