@@ -29,7 +29,7 @@ namespace SimpleGeometryLibrary.Numeric
     /// <summary>
     /// 정수형 숫자 클래스
     /// </summary>
-    public class IntNumber : Number<int>
+    internal class IntNumber : Number<int>
     {
         /// <summary>
         /// 기본 생성자
@@ -57,35 +57,35 @@ namespace SimpleGeometryLibrary.Numeric
         /// <summary>값을 합함</summary>
         /// <param name="a">입력 값</param>
         /// <returns>합한 결과 값</returns>
-        protected override Number<int> Sum(int a) => this + a;
+        protected override Number<int> Sum(Number<int> a) => this.Value + a.Value;
 
         /// <summary>값을 뺌</summary>
         /// <param name="a">입력 값</param>
         /// <returns>뺀 결과 값</returns>
-        protected override Number<int> Subtract(int a) => this - a;
+        protected override Number<int> Subtract(Number<int> a) => this.Value - a.Value;
 
         /// <summary>값을 곱함</summary>
         /// <param name="a">입력 값</param>
         /// <returns>곱한 결과 값</returns>
-        protected override Number<int> Multiply(int a) => this * a;
+        protected override Number<int> Multiply(Number<int> a) => this.Value * a.Value;
 
         /// <summary>값을 나눔</summary>
         /// <param name="a">입력 값</param>
         /// <returns>나눈 결과 값</returns>
-        protected override double Subdivision(int a) => this / a;
+        protected override Number<int> Subdivision(Number<int> a) => this.Value / a.Value;
 
         /// <summary>제곱근을 계산</summary>
         /// <returns>계산된 제곱근</returns>
-        public override double Sqrt() => Math.Sqrt(this);
+        public override Number<int> Sqrt() => (int)Math.Sqrt(this);
 
         /// <summary>입력 값과 비교하여 작은 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>입력 값과 비교하여 작은 값</returns>
-        public override int Min(int a) => Math.Min(this, a);
+        public override Number<int> Min(Number<int> a) => Math.Min(this, a);
 
         /// <summary>입력 값과 비교하여 큰 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>입력 값과 비교하여 큰 값</returns>
-        public override int Max(int a) => Math.Max(this, a);
+        public override Number<int> Max(Number<int> a) => Math.Max(this, a);
     }
 }

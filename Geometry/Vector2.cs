@@ -22,36 +22,49 @@
 //    Vector2.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 namespace SimpleGeometryLibrary.Geometry
 {
     using Numeric;
 
     /// <summary>2차원 벡터 클래스</summary>
     /// <typeparam name="T">값 유형</typeparam>
-    public class Vector2<T> : Point2<T>
+    public class Vector2<T> : Vector<T> where T : IComparable, IConvertible
     {
-        public Vector2()
-        {
-            this.FactorChanged += this.CalcSize;
-        }
-
-        public Vector2(T a, T b)
-            : base(a, b)
+        /// <summary>
+        /// 기본 생성자
+        /// </summary>
+        public Vector2() : base(2)
         {
         }
 
-        public double Size { get; private set; }
-
-        public Vector2<double> Normalize()
-            => new Vector2<double>(
-                (Number<T>)this[0] / this.Size,
-                (Number<T>)this[1] / this.Size);
-
-        private void CalcSize()
+        /// <summary>
+        /// 두 개의 값을 입력하여 객체를 생성
+        /// </summary>
+        /// <param name="a">첫 번째 값</param>
+        /// <param name="b">두 번째 값</param>
+        public Vector2(Number<T> a, Number<T> b)
+            : base(new[] {a, b})
         {
-            this.Size = (
-                (Number<T>)this[0] * this[0] +
-                (Number<T>)this[1] * this[1]).Sqrt();
+        }
+
+        /// <summary>
+        /// Point2 객체를 입력하여 객체를 생성
+        /// </summary>
+        /// <param name="a">Point2 객체</param>
+        public Vector2(Point2<T> a) : this(a.X, a.Y)
+        {
+        }
+
+        /// <summary>
+        /// 배열 객체를 암묵적으로 Vector2 객체로 변환
+        /// </summary>
+        /// <param name="a">배열 객체</param>
+        public static implicit operator Vector2<T>(Number<T>[] a)
+        {
+            return new Vector2<T>(a[0], a[1]);
         }
     }
 }

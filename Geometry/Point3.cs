@@ -1,16 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using SimpleGeometryLibrary.Numeric;
+
 namespace SimpleGeometryLibrary.Geometry
 {
     /// <summary>
     /// 3차원 벡터 클래스
     /// </summary>
     /// <typeparam name="T">값 유형</typeparam>
-    public class Point3<T> : Point2<T>
+    public class Point3<T> : Vector3<T> where T : IComparable, IConvertible
     {
         /// <summary>
         /// 기본 생성자
         /// </summary>
         public Point3()
-            : base(3)
         {
         }
 
@@ -20,17 +24,41 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="x">X 값</param>
         /// <param name="y">Y 값</param>
         /// <param name="z">Z 값</param>
-        public Point3(T x, T y, T z)
-            : base(3, x, y)
+        public Point3(Number<T> x, Number<T> y, Number<T> z)
+            : base(x, y, z)
         {
-            this.Factor[2] = z;
+        }
+
+        /// <summary>X 값을 가져옴</summary>
+        public Number<T> X
+        {
+            get { return this[0]; }
+            set { this[0] = value; }
+        }
+
+        /// <summary>Y 값을 가져옴</summary>
+        public Number<T> Y
+        {
+            get { return this[1]; }
+            set { this[1] = value; }
         }
 
         /// <summary>
         /// Z 값을 가져옴
         /// </summary>
-        public T Z => this.Factor[2];
+        public Number<T> Z
+        {
+            get { return this[2]; }
+            set { this[2] = value; }
+        }
 
-        public new Point3<T> Clone() => new Point3<T>(this.X, this.Y, this.Z);
+        /// <summary>
+        /// 배열 객체를 암묵적으로 Vector2 객체로 변환
+        /// </summary>
+        /// <param name="a">배열 객체</param>
+        public static explicit operator Point3<T>(Number<T>[] a)
+        {
+            return new Point3<T>(a[0], a[1], a[2]);
+        }
     }
 }

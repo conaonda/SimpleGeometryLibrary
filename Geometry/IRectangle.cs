@@ -22,22 +22,60 @@
 //    IRectangle.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
+
 namespace SimpleGeometryLibrary.Geometry
 {
+    using System;
+    using Numeric;
+
     /// <summary>사각형 정보 관리 인터페이스</summary>
     /// <typeparam name="T">사각형의 위치, 크기에 대한 자료형</typeparam>
-    public interface IRectangle<T>
+    public interface IRectangle<T> where T : IComparable, IConvertible
     {
         /// <summary>시작 위치</summary>
-        Point2<T> Min { get; set; }
+        Point2<T> Start { get; set; }
 
         /// <summary>끝 위치</summary>
-        Point2<T> Max { get; set; }
+        Point2<T> End { get; set; }
 
         /// <summary>가로 크기</summary>
-        T Width { get; }
+        Number<T> Width { get; set; }
 
         /// <summary>세로 크기</summary>
-        T Height { get; }
+        Number<T> Height { get; set; }
+
+        /// <summary>
+        /// 시작 X 위치
+        /// </summary>
+        Number<T> X { get; set; }
+
+        /// <summary>
+        /// 시작 Y 위치
+        /// </summary>
+        Number<T> Y { get; set; }
+
+        /// <summary>
+        /// 끝 X 위치
+        /// </summary>
+        Number<T> EndX { get; set; }
+
+        /// <summary>
+        /// 끝 Y 위치
+        /// </summary>
+        Number<T> EndY { get; set; } 
+
+        /// <summary>
+        /// 입력하는 위치가 영역에 포함되는지 확인
+        /// </summary>
+        /// <param name="pt">입력 위치</param>
+        /// <returns>포함 여부</returns>
+        bool IsIn(Point2<T> pt);
+
+        /// <summary>
+        /// 입력하는 직사각형과 겹치는지 확인
+        /// </summary>
+        /// <param name="other">입력 직사각형</param>
+        /// <returns>겹침 여부</returns>
+        bool IsIntersects(IRectangle<T> other);
     }
 }

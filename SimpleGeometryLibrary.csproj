@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SimpleGeometryLibrary.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SimpleGeometryLibrary.XML</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,9 +49,18 @@
     <Compile Include="Geometry\IRectangle.cs" />
     <Compile Include="Geometry\Point2.cs" />
     <Compile Include="Geometry\Point3.cs" />
+    <Compile Include="Geometry\Vector.cs" />
     <Compile Include="Geometry\Rectangle.cs" />
     <Compile Include="Geometry\Vector2.cs" />
     <Compile Include="Geometry\Vector3.cs" />
+    <Compile Include="KdTree\HyperRect.cs" />
+    <Compile Include="KdTree\IKdTree.cs" />
+    <Compile Include="KdTree\IPriorityQueue.cs" />
+    <Compile Include="KdTree\KdTree.cs" />
+    <Compile Include="KdTree\KdTreeNode.cs" />
+    <Compile Include="KdTree\NearestNeighbourList.cs" />
+    <Compile Include="KdTree\PriorityQueue.cs" />
+    <Compile Include="Numeric\DoubleNumber.cs" />
     <Compile Include="Numeric\IntNumber.cs" />
     <Compile Include="Numeric\Number.cs" />
     <Compile Include="Numeric\NumberFactory.cs" />

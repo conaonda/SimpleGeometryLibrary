@@ -33,15 +33,17 @@ namespace SimpleGeometryLibrary.Numeric
         /// <typeparam name="T">숫자 유형</typeparam>
         /// <param name="v">숫자 값</param>
         /// <returns>숫자 객체</returns>
-        public static object CreateNumeric<T>(T v)
+        public static object CreateNumeric<T>(IConvertible v)
         {
             switch (Type.GetTypeCode(typeof(T)))
             {
                 case TypeCode.Int32:
                     return new IntNumber(Convert.ToInt32(v));
+                case TypeCode.Double:
+                    return new DoubleNumber(Convert.ToDouble(v));
             }
 
-            return null;
+            return new NotImplementedException("int와 double형 외에는 지원예정입니다.");
         }
     }
 }

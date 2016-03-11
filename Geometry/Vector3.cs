@@ -22,44 +22,70 @@
 //    Vector3.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
+
+using System;
+using SimpleGeometryLibrary.Numeric;
+
 namespace SimpleGeometryLibrary.Geometry
 {
-    using Numeric;
-
     /// <summary>3차원 벡터 클래스</summary>
     /// <typeparam name="T">값 유형</typeparam>
-    public class Vector3<T> : Point3<T>
+    public class Vector3<T> : Vector<T> where T : IComparable, IConvertible
     {
-        public Vector3()
+        /// <summary>기본 생성자</summary>
+        public Vector3() : base(3)
         {
-            this.FactorChanged += this.CalcSize;
         }
 
         /// <summary>X, Y, Z 값을 입력하여 객체를 생성</summary>
         /// <param name="x">X 값</param>
         /// <param name="y">Y 값</param>
         /// <param name="z">Z 값</param>
-        public Vector3(T x, T y, T z)
-            : base(x, y, z)
+        public Vector3(Number<T> x, Number<T> y, Number<T> z)
+            : base(new[]{x, y, z})
+        {
+        }
+        
+        /// <summary>
+        /// Point3 객체를 입력하여 객체를 생성
+        /// </summary>
+        /// <param name="a">Point2 객체</param>
+        public Vector3(Point3<T> a) : this(a.X, a.Y, a.Z)
         {
         }
 
-        /// <summary>벡터의 크기를 가져옴</summary>
-        public double Size { get; private set; }
-
-        public Vector3<double> Normalize()
-            => new Vector3<double>(
-                (Number<T>)this[0] / this.Size, 
-                (Number<T>)this[1] / this.Size, 
-                (Number<T>)this[2] / this.Size);
-
-        /// <summary>크기를 계산</summary>
-        private void CalcSize()
+        /// <summary>
+        /// 벡터곱(외적)을 수행
+        /// </summary>
+        /// <param name="a">첫 번째 벡터</param>
+        /// <param name="b">두 번째 벡터</param>
+        /// <returns>곱해진 벡터</returns>
+        public static Vector3<T> CrossProduct(Vector3<T> a, Vector3<T> b)
         {
-            this.Size = (
-                ((Number<T>)this[0] * this[0]) +
-                ((Number<T>)this[1] * this[1]) +
-                ((Number<T>)this[2] * this[2])).Sqrt();
+            return new Vector3<T>(
+                a[1] * b[2] - a[2] * b[1],
+                a[2] * b[0] - a[0] * b[2],
+                a[0] * b[1] - a[1] * b[0]
+                );
+        }
+
+        /// <summary>
+        /// 벡터곱(외적)을 수행
+        /// </summary>
+        /// <param name="other">입력 벡터</param>
+        /// <returns>곱해진 벡터</returns>
+        public Vector3<T> CrossProduct(Vector3<T> other)
+        {
+            return CrossProduct(this, other);
+        }
+
+        /// <summary>
+        /// 배열 객체를 암묵적으로 Vector2 객체로 변환
+        /// </summary>
+        /// <param name="a">배열 객체</param>
+        public static implicit operator Vector3<T>(Number<T>[] a)
+        {
+            return new Vector3<T>(a[0], a[1], a[2]);
         }
     }
 }
