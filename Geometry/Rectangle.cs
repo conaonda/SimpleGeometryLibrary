@@ -127,8 +127,8 @@ namespace SimpleGeometryLibrary.Geometry
         /// <returns>포함 여부</returns>
         public bool IsIn(Point2<T> pt)
         {
-            return pt.X >= this.start.X && pt.Y >= this.start.Y &&
-                   this.end.X >= pt.X && this.end.Y >= pt.Y;
+            return pt.X >= this.X && pt.Y >= this.Y &&
+                   this.EndX >= pt.X && this.EndY >= pt.Y;
         }
 
         /// <summary>
@@ -136,10 +136,21 @@ namespace SimpleGeometryLibrary.Geometry
         /// </summary>
         /// <param name="other">입력 직사각형</param>
         /// <returns>겹침 여부</returns>
-        public bool IsIntersects(IRectangle<T> other)
+        public bool Intersects(IRectangle<T> other)
         {
-            return other.End.X >= this.start.X && this.end.X >= other.Start.X &&
-                   other.End.Y >= this.start.Y && this.end.Y >= other.Start.Y;
+            return other.EndX >= this.X && this.EndX >= other.X &&
+                   other.EndY >= this.Y && this.EndY >= other.Y;
+        }
+
+        /// <summary>
+        /// 입력하는 직사각형을 포함하는지 확인
+        /// </summary>
+        /// <param name="other">입력 직사각형</param>
+        /// <returns>포함 여부</returns>
+        public bool Contains(IRectangle<T> other)
+        {
+            return this.X <= other.X && other.EndX <= this.EndX &&
+                   this.Y <= other.Y && other.EndY <= this.EndY;
         }
 
         /// <summary>위치를 설정</summary>
@@ -154,6 +165,37 @@ namespace SimpleGeometryLibrary.Geometry
 
             this.start.Y = y1.Min(y2);
             this.end.Y = y1.Max(y2);
+        }
+
+        /// <summary>
+        /// 객체를 복사
+        /// </summary>
+        /// <returns>복사한 객체</returns>
+        public IRectangle<T> Clone()
+        {
+            return new Rectangle<T>(this.start, this.end);
+        }
+
+        /// <summary>
+        /// 면적 값을 가져옴
+        /// </summary>
+        /// <returns>면적 값</returns>
+        public T Area()
+        {
+            return this.Width * this.Height;
+        }
+
+        /// <summary>
+        /// 현재 개체를 나타내는 문자열을 반환합니다.
+        /// </summary>
+        /// <returns>
+        /// 현재 개체를 나타내는 문자열입니다.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return
+                $"X={this.X}, Y={this.Y}, Width={this.Width}, Height={this.Height}";
         }
     }
 }

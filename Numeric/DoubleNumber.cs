@@ -62,6 +62,15 @@ namespace SimpleGeometryLibrary.Numeric
         /// <returns>입력 값과 비교하여 큰 값</returns>
         public override Number<double> Max(Number<double> a) => Math.Max(this.Value, a.Value);
 
+        /// <summary>
+        /// 입력 값의 절대 값을 가져옴
+        /// </summary>
+        /// <returns>입력 값의 절대 값</returns>
+        public override Number<double> Abs()
+        {
+            return Math.Abs(this.Value);
+        }
+
         /// <summary>값을 합함</summary>
         /// <param name="a">입력 값</param>
         /// <returns>합한 결과 값</returns>

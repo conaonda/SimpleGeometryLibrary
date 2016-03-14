@@ -54,5 +54,16 @@ namespace SimpleGeometryLibrary.Geometry
             this.End.X = this.End.X.Max(pt.X);
             this.End.Y = this.End.Y.Max(pt.Y);
         }
+
+        /// <summary>
+        /// 객체를 복사
+        /// </summary>
+        /// <returns>복사한 객체</returns>
+        public new IEnvelope<T> Clone()
+        {
+            var ret = new Envelope<T>();
+            ret.Expand(this);
+            return ret;
+        }
     }
 }

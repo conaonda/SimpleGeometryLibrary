@@ -66,5 +66,17 @@ namespace SimpleGeometryLibrary.Geometry
         {
             return new Vector2<T>(a[0], a[1]);
         }
+
+        /// <summary>
+        /// 현재 개체를 나타내는 문자열을 반환합니다.
+        /// </summary>
+        /// <returns>
+        /// 현재 개체를 나타내는 문자열입니다.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return $"[0]={this[0]}, [1]={this[1]}}}";
+        }
     }
 }

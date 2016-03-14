@@ -240,6 +240,12 @@ namespace SimpleGeometryLibrary.Numeric
         /// <returns>입력 값과 비교하여 큰 값</returns>
         public abstract Number<T> Max(Number<T> a);
 
+        /// <summary>
+        /// 절대 값을 가져옴
+        /// </summary>
+        /// <returns>절대 값</returns>
+        public abstract Number<T> Abs(); 
+
         /// <summary>지정한 개체와 현재 개체가 같은지 여부를 확인합니다.</summary>
         /// <returns>지정한 개체가 현재 개체와 같으면 true이고, 그렇지 않으면 false입니다.</returns>
         /// <param name="other">현재 개체와 비교할 개체입니다. </param>

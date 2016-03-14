@@ -46,6 +46,7 @@
     <Compile Include="Geometry\Envelope.cs" />
     <Compile Include="Geometry\GeometryFactory.cs" />
     <Compile Include="Geometry\IEnvelope.cs" />
+    <Compile Include="Geometry\IGeometry.cs" />
     <Compile Include="Geometry\IRectangle.cs" />
     <Compile Include="Geometry\Point2.cs" />
     <Compile Include="Geometry\Point3.cs" />

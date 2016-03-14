@@ -40,5 +40,11 @@ namespace SimpleGeometryLibrary.Geometry
         /// </summary>
         /// <param name="pt">입력 위치</param>
         void Expand(Point2<T> pt);
+
+        /// <summary>
+        /// 객체를 복사
+        /// </summary>
+        /// <returns>복사한 객체</returns>
+        IEnvelope<T> Clone();
     }
 }

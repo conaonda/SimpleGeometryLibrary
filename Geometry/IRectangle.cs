@@ -30,7 +30,7 @@ namespace SimpleGeometryLibrary.Geometry
 
     /// <summary>사각형 정보 관리 인터페이스</summary>
     /// <typeparam name="T">사각형의 위치, 크기에 대한 자료형</typeparam>
-    public interface IRectangle<T> where T : IComparable, IConvertible
+    public interface IRectangle<T> : IGeometry<T> where T : IComparable, IConvertible
     {
         /// <summary>시작 위치</summary>
         Point2<T> Start { get; set; }
@@ -76,6 +76,25 @@ namespace SimpleGeometryLibrary.Geometry
         /// </summary>
         /// <param name="other">입력 직사각형</param>
         /// <returns>겹침 여부</returns>
-        bool IsIntersects(IRectangle<T> other);
+        bool Intersects(IRectangle<T> other);
+
+        /// <summary>
+        /// 입력하는 직사각형을 포함하는지 확인
+        /// </summary>
+        /// <param name="other">입력 직사각형</param>
+        /// <returns>포함 여부</returns>
+        bool Contains(IRectangle<T> other);
+
+        /// <summary>
+        /// 객체를 복사
+        /// </summary>
+        /// <returns>복사한 객체</returns>
+        IRectangle<T> Clone();
+
+        /// <summary>
+        /// 면적 값을 가져옴
+        /// </summary>
+        /// <returns>면적 값</returns>
+        T Area();
     }
 }
