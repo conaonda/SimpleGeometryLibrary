@@ -39,30 +39,30 @@ namespace SimpleGeometryLibrary.Geometry
         Point2<T> End { get; set; }
 
         /// <summary>가로 크기</summary>
-        Number<T> Width { get; set; }
+        T Width { get; set; }
 
         /// <summary>세로 크기</summary>
-        Number<T> Height { get; set; }
+        T Height { get; set; }
 
         /// <summary>
         /// 시작 X 위치
         /// </summary>
-        Number<T> X { get; set; }
+        T X { get; set; }
 
         /// <summary>
         /// 시작 Y 위치
         /// </summary>
-        Number<T> Y { get; set; }
+        T Y { get; set; }
 
         /// <summary>
         /// 끝 X 위치
         /// </summary>
-        Number<T> EndX { get; set; }
+        T EndX { get; set; }
 
         /// <summary>
         /// 끝 Y 위치
         /// </summary>
-        Number<T> EndY { get; set; } 
+        T EndY { get; set; } 
 
         /// <summary>
         /// 입력하는 위치가 영역에 포함되는지 확인

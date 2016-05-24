@@ -47,7 +47,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="endx">끝 X 좌표</param>
         /// <param name="endy">끝 Y 좌표</param>
         /// <returns>직사각형 인터페이스</returns>
-        public static IRectangle<T> CreateRectangle(Number<T> startx, Number<T> starty, Number<T> endx, Number<T> endy)
+        public static IRectangle<T> CreateRectangle(T startx, T starty, T endx, T endy)
         {
             return new Rectangle<T>(startx, starty, endx, endy);
         }

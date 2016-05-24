@@ -23,11 +23,11 @@ namespace SimpleGeometryLibraryTest
             env.Expand(rect1);
             env.Expand(rect2);
 
-            Assert.AreEqual(env.Start.X.Value, -20);
-            Assert.AreEqual(env.Start.Y.Value, -20);
+            Assert.AreEqual(env.Start.X, -20);
+            Assert.AreEqual(env.Start.Y, -20);
 
-            Assert.AreEqual(env.End.X.Value, 40);
-            Assert.AreEqual(env.End.Y.Value, 0);
+            Assert.AreEqual(env.End.X, 40);
+            Assert.AreEqual(env.End.Y, 0);
         }
 
         class Point

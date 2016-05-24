@@ -48,7 +48,7 @@ namespace SimpleGeometryLibrary.Numeric
         // public static implicit operator Number<T>(T v) => new Number<T>(v);
         /// <summary>값의 최대치를 가져옴</summary>
         /// <value>값의 최대치</value>
-        public static Number<T> MaxValue
+        public static T MaxValue
         {
             get
             {
@@ -62,7 +62,7 @@ namespace SimpleGeometryLibrary.Numeric
 
         /// <summary>값의 최소치를 가져옴</summary>
         /// <value>값의 최소치</value>
-        public static Number<T> MinValue
+        public static T MinValue
         {
             get
             {
@@ -92,33 +92,33 @@ namespace SimpleGeometryLibrary.Numeric
         /// <param name="a">첫 번째 값</param>
         /// <param name="b">두 번째 값</param>
         /// <returns>더한 결과 값을 가지는 제네릭 숫자 객체</returns>
-        public static Number<T> operator +(Number<T> a, Number<T> b) => a.Sum(b);
+        public static T operator +(Number<T> a, Number<T> b) => a.Sum(b);
 
         /// <summary>두 값을 뺌</summary>
         /// <param name="a">첫 번째 값</param>
         /// <param name="b">두 번째 값</param>
         /// <returns>뺀 결과 값을 가지는 제네릭 숫자 객체</returns>
-        public static Number<T> operator -(Number<T> a, Number<T> b)
+        public static T operator -(Number<T> a, Number<T> b)
             => a.Subtract(b);
 
         /// <summary>두 값을 곱함</summary>
         /// <param name="a">첫 번째 값</param>
         /// <param name="b">두 번째 값</param>
         /// <returns>곱한 결과 값을 가지는 제네릭 숫자 객체</returns>
-        public static Number<T> operator *(Number<T> a, Number<T> b)
+        public static T operator *(Number<T> a, Number<T> b)
             => a.Multiply(b);
 
         /// <summary>두 값을 나눔</summary>
         /// <param name="a">첫 번째 값</param>
         /// <param name="b">두 번째 값</param>
         /// <returns>결과 값을 가지는 제네릭 숫자 객체</returns>
-        public static Number<T> operator /(Number<T> a, Number<T> b)
+        public static T operator /(Number<T> a, Number<T> b)
             => a.Subdivision(b);
 
         /// <summary>반대 부호의 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>반대 부호의 값</returns>
-        public static Number<T> operator -(Number<T> a) => a * FromNumber(-1);
+        public static T operator -(Number<T> a) => a * FromNumber(-1);
 
         /// <summary>첫 번째 값의 두 번째 값보다 작음 여부를 가져옴</summary>
         /// <param name="a">첫 번째 값</param>
@@ -189,7 +189,7 @@ namespace SimpleGeometryLibrary.Numeric
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Number<T> Sum(IEnumerable<Number<T>> value)
+        public static T Sum(IEnumerable<Number<T>> value)
         {
             return value.Aggregate(default(T), (current, v) => current + v);
         }
@@ -228,23 +228,23 @@ namespace SimpleGeometryLibrary.Numeric
 
         /// <summary>제곱근을 계산</summary>
         /// <returns>계산된 제곱근</returns>
-        public abstract Number<T> Sqrt();
+        public abstract T Sqrt();
 
         /// <summary>입력 값과 비교하여 작은 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>입력 값과 비교하여 작은 값</returns>
-        public abstract Number<T> Min(Number<T> a);
+        public abstract T Min(Number<T> a);
 
         /// <summary>입력 값과 비교하여 큰 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>입력 값과 비교하여 큰 값</returns>
-        public abstract Number<T> Max(Number<T> a);
+        public abstract T Max(Number<T> a);
 
         /// <summary>
         /// 절대 값을 가져옴
         /// </summary>
         /// <returns>절대 값</returns>
-        public abstract Number<T> Abs(); 
+        public abstract T Abs(); 
 
         /// <summary>지정한 개체와 현재 개체가 같은지 여부를 확인합니다.</summary>
         /// <returns>지정한 개체가 현재 개체와 같으면 true이고, 그렇지 않으면 false입니다.</returns>
@@ -278,7 +278,7 @@ namespace SimpleGeometryLibrary.Numeric
 
     public static class NumericHelper
     {
-        public static Number<T> Sum<T>(this IEnumerable<Number<T>> values)
+        public static T Sum<T>(this IEnumerable<Number<T>> values)
             where T : IComparable, IConvertible
         {
             return Number<T>.Sum(values);

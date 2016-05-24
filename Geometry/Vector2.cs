@@ -45,7 +45,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// </summary>
         /// <param name="a">첫 번째 값</param>
         /// <param name="b">두 번째 값</param>
-        public Vector2(Number<T> a, Number<T> b)
+        public Vector2(T a, T b)
             : base(new[] {a, b})
         {
         }
@@ -62,7 +62,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// 배열 객체를 암묵적으로 Vector2 객체로 변환
         /// </summary>
         /// <param name="a">배열 객체</param>
-        public static implicit operator Vector2<T>(Number<T>[] a)
+        public static implicit operator Vector2<T>(T[] a)
         {
             return new Vector2<T>(a[0], a[1]);
         }

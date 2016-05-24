@@ -277,7 +277,7 @@ namespace SimpleGeometryLibrary.KdTree
 		        closestPointInFurtherRect.Select(
 		            (t, i) => (Number<TKey>) t - target[i]).
 		            Aggregate(default(TKey),
-		                (current, val) => (TKey) (current + val * val));
+		                (current, val) => (Number<TKey>)current + (Number<TKey>)val * val);
 
 			if (distanceSquaredToTarget.CompareTo(maxSearchRadiusSquared) <= 0)
 			{
@@ -308,7 +308,7 @@ namespace SimpleGeometryLibrary.KdTree
 		    distanceSquaredToTarget =
 		        node.Point.Select((t, i) => (Number<TKey>) t - target[i]).
 		            Aggregate(default(TKey),
-		                (current, val) => (TKey) (current + val * val));
+		                (current, val) => (Number<TKey>)current + (Number<TKey>)val * val);
 
             if (distanceSquaredToTarget.CompareTo(maxSearchRadiusSquared) <= 0)
 				nearestNeighbours.Add(node, distanceSquaredToTarget);

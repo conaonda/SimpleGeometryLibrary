@@ -22,6 +22,9 @@
 //    Program.cs 클래스를 정의합니다.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
+
+using System.IO;
+
 namespace Test
 {
     using System;
@@ -31,10 +34,10 @@ namespace Test
     /// <summary>테스트 클래스</summary>
     public class Program
     {
-        /// <summary>메인 함수</summary>
-        /// <param name="args">가변 인자</param>
-        public static void Main(string[] args)
+        public static void EnvelopeTest()
         {
+            Console.WriteLine("Start of envelope test.");
+
             var env = GeometryFactory<int>.CreatEnvelope();
             var rect1 = GeometryFactory<int>.CreateRectangle(1, -20, 40, -10);
             var rect2 = GeometryFactory<int>.CreateRectangle(-20, -10, 10, 0);
@@ -45,7 +48,26 @@ namespace Test
             Console.WriteLine("min = {0}, {1}", env.Min.X, env.Min.Y);
             Console.WriteLine("max = {0}, {1}", env.Max.X, env.Max.Y);
 
-            Console.WriteLine("End of test.");
+            Console.WriteLine("End of envelope test.");
+        }
+
+        public static void KdTreeTest()
+        {
+            Console.WriteLine("Start KdTreeTest.");
+
+            var lines = File.ReadLines("xyz.csv");
+            
+
+            Console.WriteLine("End of KdTreeTest.");
+        }
+
+        /// <summary>메인 함수</summary>
+        /// <param name="args">가변 인자</param>
+        public static void Main(string[] args)
+        {
+            ////EnvelopeTest();
+            KdTreeTest();
+
             Console.Read();
         }
     }

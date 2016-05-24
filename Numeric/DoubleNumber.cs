@@ -50,23 +50,23 @@ namespace SimpleGeometryLibrary.Numeric
 
         /// <summary>제곱근을 계산</summary>
         /// <returns>계산된 제곱근</returns>
-        public override Number<double> Sqrt() => Math.Sqrt(this.Value);
+        public override double Sqrt() => Math.Sqrt(this.Value);
 
         /// <summary>입력 값과 비교하여 작은 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>입력 값과 비교하여 작은 값</returns>
-        public override Number<double> Min(Number<double> a) => Math.Min(this.Value, a.Value);
+        public override double Min(Number<double> a) => Math.Min(this.Value, a.Value);
 
         /// <summary>입력 값과 비교하여 큰 값을 가져옴</summary>
         /// <param name="a">입력 값</param>
         /// <returns>입력 값과 비교하여 큰 값</returns>
-        public override Number<double> Max(Number<double> a) => Math.Max(this.Value, a.Value);
+        public override double Max(Number<double> a) => Math.Max(this.Value, a.Value);
 
         /// <summary>
         /// 입력 값의 절대 값을 가져옴
         /// </summary>
         /// <returns>입력 값의 절대 값</returns>
-        public override Number<double> Abs()
+        public override double Abs()
         {
             return Math.Abs(this.Value);
         }

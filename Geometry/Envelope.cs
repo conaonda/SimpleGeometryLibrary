@@ -35,11 +35,11 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="other">다른 영역 객체</param>
         public void Expand(IRectangle<T> other)
         {
-            this.Start.X = this.Start.X.Min(other.Start.X);
-            this.Start.Y = this.Start.Y.Min(other.Start.Y);
+            this.Start.X = ((Numeric.Number<T>)this.Start.X).Min(other.Start.X);
+            this.Start.Y = ((Numeric.Number<T>)this.Start.Y).Min(other.Start.Y);
 
-            this.End.X = this.End.X.Max(other.End.X);
-            this.End.Y = this.End.Y.Max(other.End.Y);
+            this.End.X = ((Numeric.Number<T>)this.End.X).Max(other.End.X);
+            this.End.Y = ((Numeric.Number<T>)this.End.Y).Max(other.End.Y);
         }
 
         /// <summary>
@@ -48,11 +48,11 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="pt">입력 위치</param>
         public void Expand(Point2<T> pt)
         {
-            this.Start.X = this.Start.X.Min(pt.X);
-            this.Start.Y = this.Start.Y.Min(pt.Y);
+            this.Start.X = ((Numeric.Number<T>)this.Start.X).Min(pt.X);
+            this.Start.Y = ((Numeric.Number<T>)this.Start.Y).Min(pt.Y);
 
-            this.End.X = this.End.X.Max(pt.X);
-            this.End.Y = this.End.Y.Max(pt.Y);
+            this.End.X = ((Numeric.Number<T>)this.End.X).Max(pt.X);
+            this.End.Y = ((Numeric.Number<T>)this.End.Y).Max(pt.Y);
         }
 
         /// <summary>

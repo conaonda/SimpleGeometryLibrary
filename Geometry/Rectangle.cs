@@ -62,7 +62,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="y1">첫 번째 Y 값</param>
         /// <param name="x2">두 번째 X 값</param>
         /// <param name="y2">두 번째 Y 값</param>
-        public Rectangle(Number<T> x1, Number<T> y1, Number<T> x2, Number<T> y2)
+        public Rectangle(T x1, T y1, T x2, T y2)
             :this()
         {
             this.FromPoints(x1, y1, x2, y2);
@@ -83,38 +83,38 @@ namespace SimpleGeometryLibrary.Geometry
         }
 
         /// <summary>가로 크기</summary>
-        public Number<T> Width
+        public T Width
         {
-            get { return this.EndX - this.X; }
-            set { this.EndX = this.X + value; }
+            get { return (Number<T>)this.EndX - this.X; }
+            set { this.EndX = (Number<T>)this.X + value; }
         }
 
         /// <summary>세로 크기</summary>
-        public Number<T> Height
+        public T Height
         {
-            get { return this.EndY - this.Y; }
-            set { this.EndY = this.Y + value; }
+            get { return (Number<T>)this.EndY - this.Y; }
+            set { this.EndY = (Number<T>)this.Y + value; }
         }
 
-        public Number<T> X
+        public T X
         {
             get { return this.start.X; }
             set { this.start.X = value; }
         }
 
-        public Number<T> Y
+        public T Y
         {
             get { return this.start.Y; }
             set { this.start.Y = value; }
         }
 
-        public Number<T> EndX
+        public T EndX
         {
             get { return this.end.X; }
             set { this.end.X = value; }
         }
 
-        public Number<T> EndY
+        public T EndY
         {
             get { return this.end.Y; }
             set { this.end.Y = value; }
@@ -127,8 +127,8 @@ namespace SimpleGeometryLibrary.Geometry
         /// <returns>포함 여부</returns>
         public bool IsIn(Point2<T> pt)
         {
-            return pt.X >= this.X && pt.Y >= this.Y &&
-                   this.EndX >= pt.X && this.EndY >= pt.Y;
+            return (Number<T>)pt.X >= this.X && (Number<T>)pt.Y >= this.Y &&
+                   (Number<T>)this.EndX >= pt.X && (Number<T>)this.EndY >= pt.Y;
         }
 
         /// <summary>
@@ -138,8 +138,8 @@ namespace SimpleGeometryLibrary.Geometry
         /// <returns>겹침 여부</returns>
         public bool Intersects(IRectangle<T> other)
         {
-            return other.EndX >= this.X && this.EndX >= other.X &&
-                   other.EndY >= this.Y && this.EndY >= other.Y;
+            return (Number<T>)other.EndX >= this.X && (Number<T>)this.EndX >= other.X &&
+                   (Number<T>)other.EndY >= this.Y && (Number<T>)this.EndY >= other.Y;
         }
 
         /// <summary>
@@ -149,8 +149,8 @@ namespace SimpleGeometryLibrary.Geometry
         /// <returns>포함 여부</returns>
         public bool Contains(IRectangle<T> other)
         {
-            return this.X <= other.X && other.EndX <= this.EndX &&
-                   this.Y <= other.Y && other.EndY <= this.EndY;
+            return (Number<T>)this.X <= other.X && (Number<T>)other.EndX <= this.EndX &&
+                   (Number<T>)this.Y <= other.Y && (Number<T>)other.EndY <= this.EndY;
         }
 
         /// <summary>위치를 설정</summary>
@@ -158,13 +158,13 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="y1">첫 번째 Y 값</param>
         /// <param name="x2">두 번째 X 값</param>
         /// <param name="y2">두 번째 Y 값</param>
-        private void FromPoints(Number<T> x1, Number<T> y1, Number<T> x2, Number<T> y2)
+        private void FromPoints(T x1, T y1, T x2, T y2)
         {
-            this.start.X = x1.Min(x2);
-            this.end.X = x1.Max(x2);
+            this.start.X = ((Number<T>)x1).Min(x2);
+            this.end.X = ((Number<T>)x1).Max(x2);
 
-            this.start.Y = y1.Min(y2);
-            this.end.Y = y1.Max(y2);
+            this.start.Y = ((Number<T>)y1).Min(y2);
+            this.end.Y = ((Number<T>)y1).Max(y2);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// <returns>면적 값</returns>
         public T Area()
         {
-            return this.Width * this.Height;
+            return (Number<T>)this.Width * this.Height;
         }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="x">X 값</param>
         /// <param name="y">Y 값</param>
         /// <param name="z">Z 값</param>
-        public Vector3(Number<T> x, Number<T> y, Number<T> z)
+        public Vector3(T x, T y, T z)
             : base(new[]{x, y, z})
         {
         }
@@ -63,9 +63,9 @@ namespace SimpleGeometryLibrary.Geometry
         public static Vector3<T> CrossProduct(Vector3<T> a, Vector3<T> b)
         {
             return new Vector3<T>(
-                a[1] * b[2] - a[2] * b[1],
-                a[2] * b[0] - a[0] * b[2],
-                a[0] * b[1] - a[1] * b[0]
+                (Number<T>)((Number<T>)a[1] * b[2]) - (Number<T>)a[2] * b[1],
+                (Number<T>)((Number<T>)a[2] * b[0]) - (Number<T>)a[0] * b[2],
+                (Number<T>)((Number<T>)a[0] * b[1]) - (Number<T>)a[1] * b[0]
                 );
         }
 
@@ -83,7 +83,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// 배열 객체를 암묵적으로 Vector2 객체로 변환
         /// </summary>
         /// <param name="a">배열 객체</param>
-        public static implicit operator Vector3<T>(Number<T>[] a)
+        public static implicit operator Vector3<T>(T[] a)
         {
             return new Vector3<T>(a[0], a[1], a[2]);
         }

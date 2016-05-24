@@ -42,7 +42,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// <summary>X, Y 값을 입력하여 객체를 생성</summary>
         /// <param name="x">X 값</param>
         /// <param name="y">Y 값</param>
-        public Point2(Number<T> x, Number<T> y) : base(x, y)
+        public Point2(T x, T y) : base(x, y)
         {
         }
 
@@ -55,14 +55,14 @@ namespace SimpleGeometryLibrary.Geometry
         }
 
         /// <summary>X 값을 가져옴</summary>
-        public Number<T> X
+        public T X
         {
             get { return this[0]; }
             set { this[0] = value; }
         }
 
         /// <summary>Y 값을 가져옴</summary>
-        public Number<T> Y
+        public T Y
         {
             get { return this[1]; }
             set { this[1] = value; }
@@ -72,7 +72,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// 배열 객체를 암묵적으로 Vector2 객체로 변환
         /// </summary>
         /// <param name="a">배열 객체</param>
-        public static implicit operator Point2<T>(Number<T>[] a)
+        public static implicit operator Point2<T>(T[] a)
         {
             return new Point2<T>(a[0], a[1]);
         }

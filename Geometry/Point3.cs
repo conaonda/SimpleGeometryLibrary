@@ -24,20 +24,20 @@ namespace SimpleGeometryLibrary.Geometry
         /// <param name="x">X 값</param>
         /// <param name="y">Y 값</param>
         /// <param name="z">Z 값</param>
-        public Point3(Number<T> x, Number<T> y, Number<T> z)
+        public Point3(T x, T y, T z)
             : base(x, y, z)
         {
         }
 
         /// <summary>X 값을 가져옴</summary>
-        public Number<T> X
+        public T X
         {
             get { return this[0]; }
             set { this[0] = value; }
         }
 
         /// <summary>Y 값을 가져옴</summary>
-        public Number<T> Y
+        public T Y
         {
             get { return this[1]; }
             set { this[1] = value; }
@@ -46,7 +46,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// <summary>
         /// Z 값을 가져옴
         /// </summary>
-        public Number<T> Z
+        public T Z
         {
             get { return this[2]; }
             set { this[2] = value; }
@@ -56,7 +56,7 @@ namespace SimpleGeometryLibrary.Geometry
         /// 배열 객체를 암묵적으로 Vector2 객체로 변환
         /// </summary>
         /// <param name="a">배열 객체</param>
-        public static explicit operator Point3<T>(Number<T>[] a)
+        public static explicit operator Point3<T>(T[] a)
         {
             return new Point3<T>(a[0], a[1], a[2]);
         }
