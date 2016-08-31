@@ -24,6 +24,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 
 namespace SimpleGeometryLibrary.Geometry
 {
@@ -65,6 +66,117 @@ namespace SimpleGeometryLibrary.Geometry
         public static implicit operator Vector2<T>(T[] a)
         {
             return new Vector2<T>(a[0], a[1]);
+        }
+
+        /// <summary>벡터에 스칼라 값을 더함</summary>
+        /// <param name="a">입력 벡터</param>
+        /// <param name="b">스칼라 값</param>
+        /// <returns>더한 벡터</returns>
+        public static Vector2<T> operator +(Vector2<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v + b).ToArray();
+        }
+
+        /// <summary>스칼라 값에 벡터를 더함</summary>
+        /// <param name="a">스칼라 값</param>
+        /// <param name="b"></param>
+        /// <returns>더한 벡터</returns>
+        public static Vector2<T> operator +(T a, Vector2<T> b)
+        {
+            return b + a;
+        }
+
+        /// <summary>
+        /// 두 벡터를 더함
+        /// </summary>
+        /// <param name="a">첫 번째 벡터</param>
+        /// <param name="b">두 번째 벡터</param>
+        /// <returns>더한 벡터</returns>
+        /// <exception cref="VectorDimensionException{T}">두 벡터의 크기가 다름</exception>
+        public static Vector2<T> operator +(Vector2<T> a, Vector2<T> b)
+        {
+            if (a.Size != b.Size)
+            {
+                throw new VectorDimensionException<T>(a, b);
+            }
+
+            return a.Zip(b, (v1, v2) => (Number<T>)v1 + v2).ToArray();
+        }
+
+        /// <summary>벡터에 스칼라 값을 뺌</summary>
+        /// <param name="a">입력 벡터</param>
+        /// <param name="b">스칼라 값</param>
+        /// <returns>뺀 벡터</returns>
+        public static Vector2<T> operator -(Vector2<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v - b).ToArray();
+        }
+
+        /// <summary>스칼라 값에 벡터를 뺌</summary>
+        /// <param name="a">스칼라 값</param>
+        /// <param name="b"></param>
+        /// <returns>뺀 벡터 </returns>
+        public static Vector2<T> operator -(T a, Vector2<T> b)
+        {
+            return b.Select(v => (Number<T>)a - v).ToArray();
+        }
+
+        /// <summary>
+        /// 두 벡터를 뺌
+        /// </summary>
+        /// <param name="a">첫 번째 벡터</param>
+        /// <param name="b">두 번째 벡터</param>
+        /// <returns>뺀 벡터</returns>
+        /// <exception cref="VectorDimensionException{T}">두 벡터의 크기가 다름</exception>
+        public static Vector2<T> operator -(Vector2<T> a, Vector2<T> b)
+        {
+            if (a.Size != b.Size)
+            {
+                throw new VectorDimensionException<T>(a, b);
+            }
+
+            return a.Zip(b, (v1, v2) => (Number<T>)v1 - v2).ToArray();
+        }
+
+        /// <summary>벡터에 스칼라 값을 곱함</summary>
+        /// <param name="a">입력 벡터</param>
+        /// <param name="b">스칼라 값</param>
+        /// <returns>곱한 벡터</returns>
+        public static Vector2<T> operator *(Vector2<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v * b).ToArray();
+        }
+
+        /// <summary>스칼라 값에 벡터를 곱함</summary>
+        /// <param name="a">스칼라 값</param>
+        /// <param name="b">입력 벡터</param>
+        /// <returns>곱한 벡터</returns>
+        public static Vector2<T> operator *(T a, Vector2<T> b)
+        {
+            return b * a;
+        }
+
+        /// <summary>벡터에 스칼라 값을 나눔</summary>
+        /// <param name="a">입력 벡터</param>
+        /// <param name="b">스칼라 값</param>
+        /// <returns>나눈 벡터</returns>
+        public static Vector2<T> operator /(Vector2<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v / b).ToArray();
+        }
+
+        /// <summary>객체를 복사</summary>
+        /// <returns>생성된 객체</returns>
+        public new Vector2<T> Clone() => this;
+
+        /// <summary>
+        /// 단위 벡터를 가져옴
+        /// </summary>
+        /// <returns>단위 벡터</returns>
+        public new Vector2<T> Normalize()
+        {
+            var size = this.Norm();
+            return this.Select(v => (Number<T>)v / size).ToArray();
         }
 
         /// <summary>

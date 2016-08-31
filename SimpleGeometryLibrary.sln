@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGeometryLibrary", "SimpleGeometryLibrary.csproj", "{90499EDD-F50D-4FEB-BF45-9F4494B5B5A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGeometryLibraryTest", "SimpleGeometryLibraryTest\SimpleGeometryLibraryTest.csproj", "{67D2CDAA-83A4-401A-B0BB-3C3F69A7B193}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGeometryLibraryTests", "..\SimpleGeometryLibraryTests\SimpleGeometryLibraryTests.csproj", "{2D02814C-AF4A-4700-A73F-9B7B1416A503}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{67D2CDAA-83A4-401A-B0BB-3C3F69A7B193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67D2CDAA-83A4-401A-B0BB-3C3F69A7B193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67D2CDAA-83A4-401A-B0BB-3C3F69A7B193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D02814C-AF4A-4700-A73F-9B7B1416A503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D02814C-AF4A-4700-A73F-9B7B1416A503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D02814C-AF4A-4700-A73F-9B7B1416A503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D02814C-AF4A-4700-A73F-9B7B1416A503}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

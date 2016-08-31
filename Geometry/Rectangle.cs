@@ -53,7 +53,7 @@ namespace SimpleGeometryLibrary.Geometry
         {
         }
 
-        public Rectangle(Point2<T> start, Vector2<T> size):this(start, start + size)
+        public Rectangle(Point2<T> start, Vector2<T> size):this(start, new Point2<T>(start + size))
         {
         }
 

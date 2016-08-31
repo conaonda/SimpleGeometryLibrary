@@ -24,6 +24,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using SimpleGeometryLibrary.Numeric;
 
 namespace SimpleGeometryLibrary.Geometry
@@ -86,6 +87,117 @@ namespace SimpleGeometryLibrary.Geometry
         public static implicit operator Vector3<T>(T[] a)
         {
             return new Vector3<T>(a[0], a[1], a[2]);
+        }
+
+        /// <summary>º¤ÅÍ¿¡ ½ºÄ®¶ó °ªÀ» ´õÇÔ</summary>
+        /// <param name="a">ÀÔ·Â º¤ÅÍ</param>
+        /// <param name="b">½ºÄ®¶ó °ª</param>
+        /// <returns>´õÇÑ º¤ÅÍ</returns>
+        public static Vector3<T> operator +(Vector3<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v + b).ToArray();
+        }
+
+        /// <summary>½ºÄ®¶ó °ª¿¡ º¤ÅÍ¸¦ ´õÇÔ</summary>
+        /// <param name="a">½ºÄ®¶ó °ª</param>
+        /// <param name="b"></param>
+        /// <returns>´õÇÑ º¤ÅÍ</returns>
+        public static Vector3<T> operator +(T a, Vector3<T> b)
+        {
+            return b + a;
+        }
+
+        /// <summary>
+        /// µÎ º¤ÅÍ¸¦ ´õÇÔ
+        /// </summary>
+        /// <param name="a">Ã¹ ¹øÂ° º¤ÅÍ</param>
+        /// <param name="b">µÎ ¹øÂ° º¤ÅÍ</param>
+        /// <returns>´õÇÑ º¤ÅÍ</returns>
+        /// <exception cref="VectorDimensionException{T}">µÎ º¤ÅÍÀÇ Å©±â°¡ ´Ù¸§</exception>
+        public static Vector3<T> operator +(Vector3<T> a, Vector3<T> b)
+        {
+            if (a.Size != b.Size)
+            {
+                throw new VectorDimensionException<T>(a, b);
+            }
+
+            return a.Zip(b, (v1, v2) => (Number<T>)v1 + v2).ToArray();
+        }
+
+        /// <summary>º¤ÅÍ¿¡ ½ºÄ®¶ó °ªÀ» »­</summary>
+        /// <param name="a">ÀÔ·Â º¤ÅÍ</param>
+        /// <param name="b">½ºÄ®¶ó °ª</param>
+        /// <returns>»« º¤ÅÍ</returns>
+        public static Vector3<T> operator -(Vector3<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v - b).ToArray();
+        }
+
+        /// <summary>½ºÄ®¶ó °ª¿¡ º¤ÅÍ¸¦ »­</summary>
+        /// <param name="a">½ºÄ®¶ó °ª</param>
+        /// <param name="b"></param>
+        /// <returns>»« º¤ÅÍ </returns>
+        public static Vector3<T> operator -(T a, Vector3<T> b)
+        {
+            return b.Select(v => (Number<T>)a - v).ToArray();
+        }
+
+        /// <summary>
+        /// µÎ º¤ÅÍ¸¦ »­
+        /// </summary>
+        /// <param name="a">Ã¹ ¹øÂ° º¤ÅÍ</param>
+        /// <param name="b">µÎ ¹øÂ° º¤ÅÍ</param>
+        /// <returns>»« º¤ÅÍ</returns>
+        /// <exception cref="VectorDimensionException{T}">µÎ º¤ÅÍÀÇ Å©±â°¡ ´Ù¸§</exception>
+        public static Vector3<T> operator -(Vector3<T> a, Vector3<T> b)
+        {
+            if (a.Size != b.Size)
+            {
+                throw new VectorDimensionException<T>(a, b);
+            }
+
+            return a.Zip(b, (v1, v2) => (Number<T>)v1 - v2).ToArray();
+        }
+
+        /// <summary>º¤ÅÍ¿¡ ½ºÄ®¶ó °ªÀ» °öÇÔ</summary>
+        /// <param name="a">ÀÔ·Â º¤ÅÍ</param>
+        /// <param name="b">½ºÄ®¶ó °ª</param>
+        /// <returns>°öÇÑ º¤ÅÍ</returns>
+        public static Vector3<T> operator *(Vector3<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v * b).ToArray();
+        }
+
+        /// <summary>½ºÄ®¶ó °ª¿¡ º¤ÅÍ¸¦ °öÇÔ</summary>
+        /// <param name="a">½ºÄ®¶ó °ª</param>
+        /// <param name="b">ÀÔ·Â º¤ÅÍ</param>
+        /// <returns>°öÇÑ º¤ÅÍ</returns>
+        public static Vector3<T> operator *(T a, Vector3<T> b)
+        {
+            return b * a;
+        }
+
+        /// <summary>º¤ÅÍ¿¡ ½ºÄ®¶ó °ªÀ» ³ª´®</summary>
+        /// <param name="a">ÀÔ·Â º¤ÅÍ</param>
+        /// <param name="b">½ºÄ®¶ó °ª</param>
+        /// <returns>³ª´« º¤ÅÍ</returns>
+        public static Vector3<T> operator /(Vector3<T> a, T b)
+        {
+            return a.Select(v => (Number<T>)v / b).ToArray();
+        }
+
+        /// <summary>°´Ã¼¸¦ º¹»ç</summary>
+        /// <returns>»ý¼ºµÈ °´Ã¼</returns>
+        public new Vector3<T> Clone() => this;
+
+        /// <summary>
+        /// ´ÜÀ§ º¤ÅÍ¸¦ °¡Á®¿È
+        /// </summary>
+        /// <returns>´ÜÀ§ º¤ÅÍ</returns>
+        public new Vector3<T> Normalize()
+        {
+            var size = this.Norm();
+            return this.Select(v => (Number<T>)v / size).ToArray();
         }
     }
 }
